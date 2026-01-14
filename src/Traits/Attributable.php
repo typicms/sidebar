@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Sidebar\Traits;
 
 use Illuminate\Support\Str;

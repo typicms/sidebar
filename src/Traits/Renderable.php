@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Sidebar\Traits;
 
 trait Renderable
@@ -7,9 +9,11 @@ trait Renderable
     public function render(): string
     {
         if ($this->isAuthorized()) {
-            return $this->factory->make($this->getView(), [
-                $this->getRenderType() => $this,
-            ])->render();
+            return $this->factory
+                ->make($this->getView(), [
+                    $this->getRenderType() => $this,
+                ])
+                ->render();
         }
 
         return '';

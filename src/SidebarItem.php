@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Sidebar;
 
 use Illuminate\Contracts\Container\Container;
@@ -65,10 +67,7 @@ class SidebarItem
 
         $path = mb_ltrim(str_replace(url('/'), '', $this->getAttribute('route')), '/');
 
-        return $this->request->is(
-            $path,
-            $path . '/*'
-        );
+        return $this->request->is($path, $path . '/*');
     }
 
     /** @param array<string, mixed> $params */

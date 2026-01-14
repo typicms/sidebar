@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Sidebar;
 
 use Closure;
@@ -70,10 +72,7 @@ class SidebarGroup
     {
         $item = $this->getItem()->init($name);
 
-        $parameters = $this->resolveMethodDependencies(
-            ['item' => $item],
-            new ReflectionFunction($callback)
-        );
+        $parameters = $this->resolveMethodDependencies(['item' => $item], new ReflectionFunction($callback));
 
         call_user_func_array($callback, $parameters);
 

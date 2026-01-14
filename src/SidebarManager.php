@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Sidebar;
 
 use Closure;
@@ -18,8 +20,10 @@ class SidebarManager implements Stringable
     /** @var Collection<string, SidebarGroup> */
     public Collection $groups;
 
-    public function __construct(protected Container $container, protected SidebarGroup $group)
-    {
+    public function __construct(
+        protected Container $container,
+        protected SidebarGroup $group,
+    ) {
         $this->groups = new Collection();
     }
 
@@ -50,16 +54,13 @@ class SidebarManager implements Stringable
 
         if ($callback instanceof Closure) {
             // Make dependency injection possible
-            $parameters = $this->resolveMethodDependencies(
-                ['group' => $group],
-                new ReflectionFunction($callback)
-            );
+            $parameters = $this->resolveMethodDependencies(['group' => $group], new ReflectionFunction($callback));
 
             call_user_func_array($callback, $parameters);
         }
 
         // Add the group to our menu groups
-        if (!empty($group)) {
+        if ($group) {
             $this->setGroup($name, $group);
         }
 

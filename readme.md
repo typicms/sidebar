@@ -71,9 +71,9 @@ class AdminSidebar extends SidebarManager
     public function build($callback = null)
     {
         $this->group('application', function(SidebarGroup $group) {
-        
+
             $group->addItem(...)
-        
+
         });
     }
 
