@@ -68,7 +68,7 @@ class SidebarGroup
         return $this->item;
     }
 
-    public function addItem(string $name, ?Closure $callback = null): SidebarItem
+    public function addItem(string $name, Closure $callback): SidebarItem
     {
         $item = $this->getItem()->init($name);
 
