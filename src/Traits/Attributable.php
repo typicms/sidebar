@@ -55,7 +55,7 @@ trait Attributable
 
     protected function getMutateMethod(string $attribute): string
     {
-        return 'get' . Str::studly($attribute);
+        return 'get'.Str::studly($attribute);
     }
 
     public function __set(string $attribute, ?string $value): void

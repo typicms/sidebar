@@ -61,13 +61,13 @@ class SidebarItem
     protected function checkActiveState(): bool
     {
         // If the active state was manually set
-        if (!is_null($this->getAttribute('active'))) {
+        if (! is_null($this->getAttribute('active'))) {
             return $this->getAttribute('active');
         }
 
         $path = mb_ltrim(str_replace(url('/'), '', $this->getAttribute('route')), '/');
 
-        return $this->request->is($path, $path . '/*');
+        return $this->request->is($path, $path.'/*');
     }
 
     /** @param array<string, mixed> $params */

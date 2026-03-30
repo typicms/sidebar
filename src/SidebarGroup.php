@@ -46,7 +46,7 @@ class SidebarGroup
         $instance = $this->cleanInstance();
         $instance->setAttribute('name', $name);
         $instance->setAttribute('weight', 1);
-        $instance->items = new Collection();
+        $instance->items = new Collection;
 
         return $instance;
     }
@@ -60,7 +60,7 @@ class SidebarGroup
 
     public function shouldShowHeading(): bool
     {
-        return !$this->hideHeading;
+        return ! $this->hideHeading;
     }
 
     public function getItem(): SidebarItem

@@ -24,7 +24,7 @@ class SidebarManager implements Stringable
         protected Container $container,
         protected SidebarGroup $group,
     ) {
-        $this->groups = new Collection();
+        $this->groups = new Collection;
     }
 
     public function build(?Closure $callback = null): SidebarManager
@@ -77,14 +77,14 @@ class SidebarManager implements Stringable
 
         foreach ($groups as $group) {
             // Don't overrule user preferences
-            if (!isset($group->hideHeading)) {
+            if (! isset($group->hideHeading)) {
                 $group->hideHeading($this->withoutGroupHeading);
             }
 
             $html .= $group->render();
         }
 
-        return $html . '</ul>';
+        return $html.'</ul>';
     }
 
     public function groupExists(string $name): bool
