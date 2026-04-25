@@ -25,7 +25,7 @@ class SidebarItem
 
     public int $weight;
 
-    protected string $view = 'sidebar::item';
+    protected string $view = 'admin::sidebar.item';
 
     protected string $renderType = 'item';
 

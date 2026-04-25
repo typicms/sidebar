@@ -28,7 +28,7 @@ class SidebarGroup
 
     public int $weight;
 
-    protected string $view = 'sidebar::group';
+    protected string $view = 'admin::sidebar.group';
 
     protected string $renderType = 'group';
 
