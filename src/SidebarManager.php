@@ -50,7 +50,7 @@ class SidebarManager implements Stringable
 
     public function group(string $name, ?Closure $callback = null): SidebarGroup
     {
-        $group = $this->groupExists($name) ? $this->getGroup($name) : $this->group->init($name);
+        $group = $this->getGroup($name) ?? $this->group->init($name);
 
         if ($callback instanceof Closure) {
             // Make dependency injection possible
@@ -60,9 +60,7 @@ class SidebarManager implements Stringable
         }
 
         // Add the group to our menu groups
-        if ($group) {
-            $this->setGroup($name, $group);
-        }
+        $this->setGroup($name, $group);
 
         // Return the group object
         return $group;
@@ -92,7 +90,7 @@ class SidebarManager implements Stringable
         return $this->groups->has($this->getNameKey($name));
     }
 
-    public function getGroup(string $name): mixed
+    public function getGroup(string $name): ?SidebarGroup
     {
         return $this->groups->get($this->getNameKey($name));
     }

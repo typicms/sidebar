@@ -28,7 +28,7 @@ trait Attributable
         $value = $this->getRawAttribute($attribute, $value);
 
         if ($this->hasMutator($attribute)) {
-            return $this->mutate($attribute, $value);
+            return $this->mutate($attribute, is_string($value) ? $value : null);
         }
 
         return $value;
@@ -65,7 +65,9 @@ trait Attributable
 
     public function __get(string $attribute): ?string
     {
-        return $this->getAttribute($attribute);
+        $value = $this->getAttribute($attribute);
+
+        return is_string($value) ? $value : null;
     }
 
     public function __isset(string $attribute): bool
@@ -73,7 +75,8 @@ trait Attributable
         return isset($this->attributes[$attribute]);
     }
 
-    public function __call(string $method, mixed $params): self
+    /** @param array<int, mixed> $params */
+    public function __call(string $method, array $params): self
     {
         return $this->setAttribute($method, head($params));
     }
