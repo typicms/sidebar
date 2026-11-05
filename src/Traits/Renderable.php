@@ -19,11 +19,13 @@ trait Renderable
         return '';
     }
 
+    /** @return view-string */
     public function getView(): string
     {
         return $this->view;
     }
 
+    /** @param view-string $view */
     public function setView(string $view): self
     {
         $this->view = $view;
