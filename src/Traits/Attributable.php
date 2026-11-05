@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TypiCMS\Modules\Sidebar\Traits;
 
 use Illuminate\Support\Str;
+use UnexpectedValueException;
 
 trait Attributable
 {
@@ -13,7 +14,13 @@ trait Attributable
 
     public function cleanInstance(): self
     {
-        return $this->container->make($this::class);
+        $instance = $this->container->make($this::class);
+
+        if (! $instance instanceof self) {
+            throw new UnexpectedValueException('The container must build a '.$this::class.'.');
+        }
+
+        return $instance;
     }
 
     public function setAttribute(string $attribute, mixed $value): self
